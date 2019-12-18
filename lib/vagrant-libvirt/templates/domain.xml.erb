@@ -187,9 +187,9 @@
       </video>
       <%#End Video -%>
     <% end %>
-    <% if @rng[:model] == "random"%>
+    <% if @rng[:model] == "random" || @rng[:model] == "urandom" %>
       <rng model='virtio'>
-        <backend model='random'>/dev/random</backend>
+        <backend model='random'>/dev/<%= @rng[:model] %></backend>
         <% if @rng[:address] %>
         <address <%= @rng[:address].map { |k, v| "#{k}=\"#{v}\"" }.join(" ") %> />
         <% end %>
