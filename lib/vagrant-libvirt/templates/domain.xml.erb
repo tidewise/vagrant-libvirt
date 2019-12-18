@@ -5,6 +5,7 @@
   <vcpu><%= @cpus %></vcpu>
 
 
+<% if @cpu_mode %>
   <cpu mode='<%= @cpu_mode %>'>
     <% if @cpu_mode != 'host-passthrough' %>
       <model fallback='<%= @cpu_fallback %>'><% if @cpu_mode == 'custom' %><%= @cpu_model %><% end %></model>
@@ -32,6 +33,7 @@
       </numa>
     <% end %>
   </cpu>
+<% end %>
 
 <% unless @memory_backing.empty? %>
   <memoryBacking>
