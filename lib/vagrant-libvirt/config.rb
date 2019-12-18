@@ -166,6 +166,15 @@ module VagrantPlugins
       # Use QEMU session instead of system
       attr_accessor :qemu_use_session
 
+      # Owner UID of created storage
+      attr_accessor :storage_uid
+
+      # Owner GID of created storage
+      attr_accessor :storage_gid
+
+      # Created storage permissions
+      attr_accessor :storage_mode
+
       def initialize
         @uri               = UNSET_VALUE
         @driver            = UNSET_VALUE
@@ -282,6 +291,10 @@ module VagrantPlugins
 
         @qemu_args  = []
         @qemu_use_session  = UNSET_VALUE
+
+        @storage_uid       = UNSET_VALUE
+        @storage_gid       = UNSET_VALUE
+        @storage_mode      = UNSET_VALUE
       end
 
       def boot(device)
@@ -664,6 +677,10 @@ module VagrantPlugins
         @system_uri      = 'qemu:///system' if @system_uri == UNSET_VALUE
 
         @qemu_use_session = false if @qemu_use_session == UNSET_VALUE
+
+        @storage_uid = nil if @storage_uid == UNSET_VALUE
+        @storage_gid = nil if @storage_gid == UNSET_VALUE
+        @storage_mode = nil if @storage_mode == UNSET_VALUE
 
         # generate a URI if none is supplied
         @uri = _generate_uri if @uri == UNSET_VALUE
