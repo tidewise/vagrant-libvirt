@@ -52,6 +52,7 @@ module VagrantPlugins
                 xml.driver(type: 'path', wrpolicy: 'immediate')
                 xml.source(dir: folder_opts[:hostpath])
                 xml.target(dir: mount_tag)
+                xml.address(**folder_opts[:address]) if folder_opts[:address]
                 xml.readonly unless folder_opts[:readonly].nil?
               end
             end.to_xml(

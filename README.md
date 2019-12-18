@@ -287,6 +287,11 @@ end
   _target_](http://libvirt.org/formatdomain.html#elementsDisks). NOTE: this
   option applies only to disks associated with a box image. To set the bus type
   on additional disks, see the [Additional Disks](#additional-disks) section.
+* `disk_address` - The disk's address, as a hash of the address attributes.
+  E.g. `{ type: 'virtio-mmio' }`. Possible values are documented in Libvirt's
+  [description for _target_](http://libvirt.org/formatdomain.html#elementsDisks).
+  NOTE: this option applies only to disks associated with a box image. To set the address
+  on additional disks, see the [Additional Disks](#additional-disks) section.
 * `disk_device` - The disk device to emulate. Defaults to vda if not
   set, which should be fine for paravirtualized guests, but some fully
   virtualized guests may require hda. NOTE: this option also applies only to
@@ -743,6 +748,7 @@ It has a number of options:
 * `size` - Size of the disk image. If unspecified, defaults to 10G.
 * `type` - Type of disk image to create. Defaults to *qcow2*.
 * `bus` - Type of bus to connect device to. Defaults to *virtio*.
+* `address` - Device address for the device to. Defaults to not setting a specific address.
 * `cache` - Cache mode to use, e.g. `none`, `writeback`, `writethrough` (see
   the [libvirt documentation for possible
   values](http://libvirt.org/formatdomain.html#elementsDisks) or
